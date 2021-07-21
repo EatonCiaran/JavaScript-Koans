@@ -1,38 +1,38 @@
-module("About Functions And Closure (topics/about_functions_and_closure.js)");
+QUnit.module("About Functions And Closure (topics/about_functions_and_closure.js)");
 
-test("defining functions directly", function () {
+QUnit.test("defining functions directly", (assert) => {
     var result = "a";
     function changeResult() {
         // The ability to access variables defined in the same scope as the function is known as "closure"
         result = "b";
     }
     changeResult();
-    equal("b", result, "what is the value of `result`?");
+    assert.equal("b", result, "what is the value of `result`?");
 });
 
-test("assigning functions to variables", function () {
+QUnit.test("assigning functions to variables", (assert) => {
     var triple = function (input) {
         return input * 3;
     };
-    equal(12, triple(4), "what is triple 4?");
+    assert.equal(12, triple(4), "what is triple 4?");
 });
 
-test("self invoking functions", function () {
+QUnit.test("self invoking functions", (assert) => {
     var publicValue = "shared";
 
     // Self invoking functions are used to provide scoping and to alias variables
     (function (pv) {
         var secretValue = "password";
-        equal("shared", pv, "what is the value of `pv`?");
-        equal("string", typeof secretValue, "is `secretValue` available in this context?");
-        equal("string", typeof publicValue, "is `publicValue` available in this context?");
+        assert.equal("shared", pv, "what is the value of `pv`?");
+        assert.equal("string", typeof secretValue, "is `secretValue` available in this context?");
+        assert.equal("string", typeof publicValue, "is `publicValue` available in this context?");
     })(publicValue);
 
-    equal("undefined", typeof secretValue, "is `secretValue` available in this context?");
-    equal("string", typeof publicValue, "is `publicValue` available in this context?");
+    assert.equal("undefined", typeof secretValue, "is `secretValue` available in this context?");
+    assert.equal("string", typeof publicValue, "is `publicValue` available in this context?");
 });
 
-test("arguments array", function () {
+QUnit.test("arguments array", (assert) => {
     var add = function () {
         var total = 0;
         for (var i = 0; i < arguments.length; i++) {
@@ -42,11 +42,11 @@ test("arguments array", function () {
         return total;
     };
 
-    equal(15, add(1, 2, 3, 4, 5), "add 1, 2, 3, 4, 5");
-    equal(9, add(4, 7, -2), "add 4, 7, -2");
+    assert.equal(15, add(1, 2, 3, 4, 5), "add 1, 2, 3, 4, 5");
+    assert.equal(9, add(4, 7, -2), "add 4, 7, -2");
 });
 
-test("using call to invoke function", function () {
+QUnit.test("using call to invoke function", (assert) => {
     var invokee = function (message) {
         return this + message;
     };
@@ -58,10 +58,10 @@ test("using call to invoke function", function () {
     arguments are comma separated). */
     var result = invokee.call("I am this!", "Where did it come from?");
 
-    equal("I am this!Where did it come from?", result, "what will the value of `invokee`'s `this` be?");
+    assert.equal("I am this!Where did it come from?", result, "what will the value of `invokee`'s `this` be?");
 });
 
-test("using apply to invoke function", function () {
+QUnit.test("using apply to invoke function", (assert) => {
     var invokee = function (message1, message2) {
         return this + message1 + message2;
     };
@@ -72,5 +72,5 @@ test("using apply to invoke function", function () {
     function. */
     var result = invokee.apply("I am this!", ["I am arg1", "I am arg2"]);
 
-    equal("I am this!I am arg1I am arg2", result, "what will the value of `invokee`'s `this` be?");
+    assert.equal("I am this!I am arg1I am arg2", result, "what will the value of `invokee`'s `this` be?");
 });

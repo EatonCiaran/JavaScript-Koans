@@ -1,34 +1,34 @@
-module("About Strings (topics/about_strings.js)");
+QUnit.module("About Strings (topics/about_strings.js)");
 
-test("delimiters", function () {
+QUnit.test("delimiters", (assert) => {
     var singleQuotedString = 'apple';
     var doubleQuotedString = "apple";
-    equal(true, singleQuotedString === doubleQuotedString, "are the two strings equal?");
+    assert.equal(true, singleQuotedString === doubleQuotedString, "are the two strings equal?");
 });
 
-test("concatenation", function () {
+QUnit.test("concatenation", (assert) => {
     var fruit = "apple";
     var dish = "pie";
-    equal("apple pie", fruit + " " + dish, 'what is the value of `fruit + " " + dish`?');
+    assert.equal("apple pie", fruit + " " + dish, 'what is the value of `fruit + " " + dish`?');
 });
 
-test("character Type", function () {
+QUnit.test("character Type", (assert) => {
     var characterType = typeof "Amory".charAt(1); // typeof will be explained in "about reflection"
-    equal("string", characterType, "if Javascript has no character type, what is this type?");
+    assert.equal("string", characterType, "if Javascript has no character type, what is this type?");
 });
 
-test("escape character", function () {
+QUnit.test("escape character", (assert) => {
     // Escape sequence using an Unicode code point https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#escape_sequences
     var stringWithAnEscapedCharacter = "\u0041pple";
-    equal("Apple", stringWithAnEscapedCharacter, "what is the value of `stringWithAnEscapedCharacter`?");
+    assert.equal("Apple", stringWithAnEscapedCharacter, "what is the value of `stringWithAnEscapedCharacter`?");
 });
 
-test("string.length", function () {
+QUnit.test("string.length", (assert) => {
     var fruit = "apple";
-    equal(5, fruit.length, "what is the value of `fruit.length`?");
+    assert.equal(5, fruit.length, "what is the value of `fruit.length`?");
 });
 
-test("slice", function () {
+QUnit.test("slice", (assert) => {
     var fruit = "apple pie";
-    equal("apple", fruit.slice(0, 5), "what is the value of `fruit.slice(0,5)`?");
+    assert.equal("apple", fruit.slice(0, 5), "what is the value of `fruit.slice(0,5)`?");
 });

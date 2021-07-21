@@ -1,7 +1,7 @@
 // Demonstrate objects prototype chain
 
 // https://developer.mozilla.org/en/JavaScript/Guide/Inheritance_and_the_prototype_chain
-module("About Prototype Chain (topics/about_prototype_chain.js)");
+QUnit.module("About Prototype Chain (topics/about_prototype_chain.js)");
 
 var father = {
     b: 3,
@@ -26,34 +26,34 @@ child.b = 2;
  * ---------------------- ---- ---- ----
  * */
 
-test("is there an `a` and `b` own property on `child`?", function () {
-    equal(true, child.hasOwnProperty("a"), "what is the value of `child.hasOwnProperty('a')`?");
-    equal(true, child.hasOwnProperty("b"), "what is the value of `child.hasOwnProperty('b')`?");
+QUnit.test("is there an `a` and `b` own property on `child`?", (assert) => {
+    assert.equal(true, child.hasOwnProperty("a"), "what is the value of `child.hasOwnProperty('a')`?");
+    assert.equal(true, child.hasOwnProperty("b"), "what is the value of `child.hasOwnProperty('b')`?");
 });
 
-test("is there an `a` and `b` property on `child`?", function () {
-    equal(1, child.a, "what is the value of `a`?");
-    equal(2, child.b, "what is the value of `b`?");
+QUnit.test("is there an `a` and `b` property on `child`?", (assert) => {
+    assert.equal(1, child.a, "what is the value of `a`?");
+    assert.equal(2, child.b, "what is the value of `b`?");
 });
 
-test("if `b` was removed, what is the value of `b`?", function () {
+QUnit.test("if `b` was removed, what is the value of `b`?", (assert) => {
     delete child.b;
-    equal(3, child.b, "what is the value of `b` now?");
+    assert.equal(3, child.b, "what is the value of `b` now?");
 });
 
-test("is there a `c` own property on `child`?", function () {
-    equal(false, child.hasOwnProperty("c"), "what is the value of `child.hasOwnProperty('c')`?");
+QUnit.test("is there a `c` own property on `child`?", (assert) => {
+    assert.equal(false, child.hasOwnProperty("c"), "what is the value of `child.hasOwnProperty('c')`?");
 });
 
 // Is there a `c` own property on `child`? No, check its prototype
 // Is there a `c` own property on child.[[Prototype]]? Yes, its value is...
-test("is there a `c` property on `child`?", function () {
-    equal(4, child.c, "what is the value of `child.c`?");
+QUnit.test("is there a `c` property on `child`?", (assert) => {
+    assert.equal(4, child.c, "what is the value of `child.c`?");
 });
 
 // Is there a `d` own property on `child`? No, check its prototype
 // Is there a `d` own property on child.[[Prototype]]? No, check it prototype
 // child.[[Prototype]].[[Prototype]] is null, stop searching, no property found, return...
-test("is there an `d` property on `child`?", function () {
-    equal(undefined, child.d, "what is the value of `child.d`?");
+QUnit.test("is there an `d` property on `child`?", (assert) => {
+    assert.equal(undefined, child.d, "what is the value of `child.d`?");
 });
